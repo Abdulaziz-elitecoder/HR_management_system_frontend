@@ -1,22 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AttendanceForm from '../components/AttendanceForm';
+import './AttendancePage.css';
 
-interface Employee {
+interface AttendanceRecord {
     id: number;
-    username: string;
-    email: string;
-}
-
-interface Attendance {
-    id: number;
-    employee: number;
+    employee: string;
     date: string;
     present: boolean;
 }
 
 const AttendancePage: React.FC = () => {
-    const [attendanceRecords, setAttendanceRecords] = useState<Attendance[]>([]);
+    const [attendanceRecords, setAttendanceRecords] = useState<AttendanceRecord[]>([]);
 
     useEffect(() => {
         const fetchAttendance = async () => {
@@ -30,17 +25,23 @@ const AttendancePage: React.FC = () => {
         fetchAttendance();
     }, []);
 
+    const handleAddAttendance = (newAttendance: AttendanceRecord) => {
+        setAttendanceRecords(prevRecords => [...prevRecords, newAttendance]);
+    };
+
     return (
-        <div>
-            <h2>Attendance Records</h2>
-            <AttendanceForm />
-            <ul>
+        <div className="attendance-page">
+            <h2>Attendance</h2>
+            <AttendanceForm onAddAttendance={handleAddAttendance} />
+            <div className="attendance-list">
                 {attendanceRecords.map((record) => (
-                    <li key={record.id}>
-                        Employee ID: {record.employee}, Date: {record.date}, Present: {record.present ? 'Yes' : 'No'}
-                    </li>
+                    <div key={record.id} className={`attendance-item ${record.present ? 'present' : 'absent'}`}>
+                        <span>{record.employee}</span>
+                        <span>{record.date}</span>
+                        <span>{record.present ? 'Present' : 'Absent'}</span>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 };

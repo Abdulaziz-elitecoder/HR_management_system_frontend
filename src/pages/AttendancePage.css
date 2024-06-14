@@ -1,0 +1,49 @@
+.attendance-page {
+    width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+.attendance-page h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.attendance-list {
+    margin-top: 20px;
+}
+
+.attendance-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.attendance-item.present {
+    border-left: 5px solid #4CAF50;
+}
+
+.attendance-item.absent {
+    border-left: 5px solid #f44336;
+}
+
+.attendance-item span {
+    flex: 1;
+    text-align: center;
+}
+
+.attendance-item span:nth-child(1) {
+    text-align: left;
+}
+
+.attendance-item span:nth-child(3) {
+    text-align: right;
+}

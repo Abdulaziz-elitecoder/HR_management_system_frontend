@@ -1,19 +1,20 @@
 .attendance-form {
-    width: 300px;
+    width: 95%;
+    padding: 2%;
     margin: 20px auto;
-    padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .attendance-form select,
-.attendance-form input[type="date"],
-.attendance-form input[type="checkbox"] {
+.attendance-form input[type="date"] {
     width: 100%;
     padding: 8px;
     box-sizing: border-box;
     margin-bottom: 15px;
+    border-radius: 5px;
+
 }
 
 .attendance-form label {

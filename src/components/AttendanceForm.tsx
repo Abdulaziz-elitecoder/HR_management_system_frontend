@@ -7,7 +7,11 @@ interface Employee {
     username: string;
 }
 
-const AttendanceForm: React.FC = () => {
+interface AttendanceFormProps {
+    onAddAttendance: (attendance: any) => void;
+}
+
+const AttendanceForm: React.FC<AttendanceFormProps> = ({ onAddAttendance }) => {
     const [employees, setEmployees] = useState<Employee[]>([]);
     const [employeeId, setEmployeeId] = useState('');
     const [date, setDate] = useState('');
@@ -28,11 +32,12 @@ const AttendanceForm: React.FC = () => {
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         try {
-            await axios.post('http://localhost:8000/api/attendance/', { employee: employeeId, date, present }, {
+            const response = await axios.post('http://localhost:8000/api/attendance/', { employee: employeeId, date, present }, {
                 headers: {
                     Authorization: `Token ${localStorage.getItem('token')}`
                 }
             });
+            onAddAttendance(response.data);
             setEmployeeId('');
             setDate('');
             setPresent(true);
@@ -54,7 +59,7 @@ const AttendanceForm: React.FC = () => {
             <input id="date" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
             <label>
                 <input type="checkbox" checked={present} onChange={(e) => setPresent(e.target.checked)} />
-                Present
+                On-site
             </label>
             <button type="submit">Add Attendance</button>
         </form>
