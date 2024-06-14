@@ -1,17 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './AttendanceForm.css';
 
 interface Employee {
     id: number;
     username: string;
-    email: string;
-}
-
-interface Attendance {
-    id: number;
-    employee: number;
-    date: string;
-    present: boolean;
 }
 
 const AttendanceForm: React.FC = () => {
@@ -49,14 +42,16 @@ const AttendanceForm: React.FC = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <select value={employeeId} onChange={(e) => setEmployeeId(e.target.value)}>
+        <form className="attendance-form" onSubmit={handleSubmit}>
+            <label htmlFor="employee">Select Employee</label>
+            <select id="employee" value={employeeId} onChange={(e) => setEmployeeId(e.target.value)}>
                 <option value="">Select Employee</option>
                 {employees.map((employee) => (
                     <option key={employee.id} value={employee.id}>{employee.username}</option>
                 ))}
             </select>
-            <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+            <label htmlFor="date">Date</label>
+            <input id="date" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
             <label>
                 <input type="checkbox" checked={present} onChange={(e) => setPresent(e.target.checked)} />
                 Present
