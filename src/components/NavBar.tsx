@@ -1,40 +1,49 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import './NavBar.css'; // Import CSS for styling
+import { NavLink, useNavigate } from 'react-router-dom';
+import './Navbar.css';
 
-interface NavBarProps {
-    isLoggedIn: boolean;
-    handleLogout: () => void;
-}
-
-const NavBar: React.FC<NavBarProps> = ({ isLoggedIn, handleLogout }) => {
+const Navbar: React.FC<{ isLoggedIn: boolean; onLogout: () => void }> = ({ isLoggedIn, onLogout }) => {
     const navigate = useNavigate();
 
-    const handleAuthClick = () => {
-        if (isLoggedIn) {
-            handleLogout();
-        } else {
-            navigate('/login');
-        }
+    const handleLogout = () => {
+        onLogout();
+        navigate('/login');
     };
 
     return (
         <nav className="navbar">
             <ul>
                 <li>
-                    <Link to="/employees">Employees</Link>
+                    <NavLink 
+                        to="/employees" 
+                        className={({ isActive }) => isActive ? 'active' : ''}
+                    >
+                        Employees
+                    </NavLink>
                 </li>
                 <li>
-                    <Link to="/attendance">Attendance</Link>
+                    <NavLink 
+                        to="/attendance" 
+                        className={({ isActive }) => isActive ? 'active' : ''}
+                    >
+                        Attendance
+                    </NavLink>
                 </li>
-                <li>
-                    <button onClick={handleAuthClick}>
-                        {isLoggedIn ? 'Logout' : 'Login'}
-                    </button>
+                <li className="right">
+                    {isLoggedIn ? (
+                        <button onClick={handleLogout}>Logout</button>
+                    ) : (
+                        <NavLink 
+                            to="/login" 
+                            className={({ isActive }) => isActive ? 'active' : ''}
+                        >
+                            Login
+                        </NavLink>
+                    )}
                 </li>
             </ul>
         </nav>
     );
 };
 
-export default NavBar;
+export default Navbar;

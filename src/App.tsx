@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import LoginPage from './pages/LoginPage';
 import EmployeePage from './pages/EmployeePage';
 import AttendancePage from './pages/AttendancePage';
-import NavBar from './components/NavBar';
+import NavBar from './components/Navbar';
 
 const App: React.FC = () => {
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(!!localStorage.getItem('token'));
@@ -20,7 +20,7 @@ const App: React.FC = () => {
 
     return (
         <Router>
-            <NavBar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+            <NavBar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
             <Routes>
                 <Route path="/login" element={!isLoggedIn ? <LoginPage onLogin={handleLogin} /> : <Navigate to="/employees" />} />
                 <Route path="/employees" element={isLoggedIn ? <EmployeePage /> : <Navigate to="/login" />} />
