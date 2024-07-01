@@ -32,11 +32,12 @@
     background: none;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
+    border-radius: 10px;
 }
 
 .navbar li a:hover, .navbar li button:hover {
     background-color: #111;
-    transform: scale(1.05);
+    border-radius: 10px;
 }
 
 .navbar li a.active {

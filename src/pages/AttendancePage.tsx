@@ -38,7 +38,7 @@ const AttendancePage: React.FC = () => {
                     <div key={record.id} className={`attendance-item ${record.present ? 'present' : 'absent'}`}>
                         <span>{record.employee}</span>
                         <span>{record.date}</span>
-                        <span>{record.present ? 'Present' : 'Absent'}</span>
+                        <span>{record.present ? 'On-site' : 'Online'}</span>
                     </div>
                 ))}
             </div>

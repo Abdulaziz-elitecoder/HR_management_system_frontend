@@ -1,34 +1,22 @@
-.employee-page {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-.employee-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding-top: 20px;
+li {
+    margin: 10px 0;
 }
 
-.employee-card {
-    background-color: #f0f0f0;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
 }
 
-.employee-card:hover {
-    transform: translateY(-5px);
-}
-
-.employee-card h3 {
-    margin-bottom: 10px;
-    font-size: 18px;
-}
-
-.employee-card p {
-    color: #666;
-    font-size: 14px;
+button:hover {
+    background-color: #0056b3;
 }
